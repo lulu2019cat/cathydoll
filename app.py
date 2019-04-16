@@ -32,15 +32,15 @@ def callback():
     return 'OK'
 
 # 處理訊息
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(hi, message=TextMessage)
 def handle_message(hi):
     message = TextSendMessage(text=gute.message.text)
-    line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.push_message(event.reply_token, message)
 message = ImageSendMessage(
     original_content_url='https://example.com/original.jpg',
     preview_image_url='https://example.com/preview.jpg'
 )
-line_bot_api.reply_message(event.reply_token, message)
+line_bot_api.push_message(event.reply_token, message)
                           
 message = LocationSendMessage(
     title='my location',
@@ -48,7 +48,7 @@ message = LocationSendMessage(
     latitude=35.65910807942215,
     longitude=139.70372892916203
 )
-line_bot_api.reply_message(event.reply_token, message)                          
+line_bot_api.push_message(event.reply_token, message)                          
                           
 import os
 if __name__ == "__main__":
