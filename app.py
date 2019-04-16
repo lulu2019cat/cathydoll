@@ -36,7 +36,20 @@ def callback():
 def handle_message(hi):
     message = TextSendMessage(text=gute.message.text)
     line_bot_api.reply_message(event.reply_token, message)
-
+message = ImageSendMessage(
+    original_content_url='https://example.com/original.jpg',
+    preview_image_url='https://example.com/preview.jpg'
+)
+line_bot_api.reply_message(event.reply_token, message)
+                          
+message = LocationSendMessage(
+    title='my location',
+    address='Tokyo',
+    latitude=35.65910807942215,
+    longitude=139.70372892916203
+)
+line_bot_api.reply_message(event.reply_token, message)                          
+                          
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
