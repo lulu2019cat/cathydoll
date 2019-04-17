@@ -17,20 +17,7 @@ line_bot_api = LineBotApi(' "HJxbaOIHF2V/vPcD1ifQD4K3NshhjXxzNaZ1M2LAm2JQ55iw9m0
                        '
 handler = WebhookHandler(' "789d3e1a07e119832fd17b788dcd2266" ')
 
-# 監聽所有來自 /callback 的 Post Request
-@app.route("/callback", methods=['POST'])
-def callback():
-    # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-    return 'OK'
+
 
 # 處理訊息
 @handler.add(hi, message=TextMessage)
